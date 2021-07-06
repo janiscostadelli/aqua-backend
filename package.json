@@ -4,21 +4,23 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "@types/jsonwebtoken": "^8.5.3",
-    "@types/knex": "^0.16.1",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.95.6",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "typescript": "^4.3.5"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/jsonwebtoken": "^8.5.3",
+    "@types/knex": "^0.16.1",
     "@types/cors": "^2.8.10",
     "@types/express": "^4.17.12",
     "@types/uuid": "^8.3.1",
-    "ts-node-dev": "^1.1.8",
-    "typescript": "^4.3.5"
+    "ts-node-dev": "^1.1.8"
   },
   "scripts": {
     "dev": "ts-node-dev ./src/index.ts",

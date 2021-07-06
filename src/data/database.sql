@@ -1,7 +1,7 @@
 CREATE TABLE users (
   name VARCHAR(64),
-  email VARCHAR (64) UNIQUE,
-  nickname VARCHAR(64) UNIQUE PRIMARY KEY,
+  email VARCHAR (64) UNIQUE PRIMARY KEY,
+  nickname VARCHAR(64) UNIQUE,
   password VARCHAR(64)
 );
 
