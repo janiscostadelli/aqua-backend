@@ -1,13 +1,15 @@
 import UserDatabase from "../data/UserDatabase";
 import { InvalidInputError } from "../error/InvalidInputError";
+import { NotFoundError } from "../error/NotFoundError";
 import Authenticator from "../middlewares/Authenticator";
-import { signupDTO } from "../models/userModel";
+import HashManager from "../middlewares/HashManager";
+import { loginDTO, signupDTO } from "../models/userModel";
 
 class UserBusiness {
   signup = async (user: signupDTO) => {
     if (!user.name || !user.email || !user.nickname || !user.password) {
       throw new InvalidInputError(
-        "Preencha os campos 'name', 'email', 'nickname' e 'password'."
+        "Preencha os campos 'name', 'email', 'nickname' e 'password'"
       );
     }
 
@@ -19,8 +21,22 @@ class UserBusiness {
     await UserDatabase.createUser(user);
     return Authenticator.generateToken({ email: user.email });
   };
+
+  login = async (user: loginDTO) => {
+    if (!user.email || !user.password) {
+      throw new InvalidInputError("Preencha os campos 'email' e 'password'");
+    }
+    const result = await UserDatabase.getUserByEmail(user.email);
+    if (!result) {
+      throw new NotFoundError("E-mail não cadastrado");
+    }
+    if (!HashManager.compare(user.password, result.password)) {
+      throw new InvalidInputError("Senha incorreta");
+    }
+    return Authenticator.generateToken({ email: user.email });
+  };
 }
 
 export default new UserBusiness();
 
-
+// voce é incrivel

@@ -3,6 +3,7 @@ import cors from 'cors'
 import { AddressInfo } from "net";
 import dotenv from "dotenv";
 import { userRouter } from './router/userRouter';
+import { musicRouter } from './router/musicRouter';
 
 dotenv.config();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/user", userRouter);
+app.use("/music", musicRouter);
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {

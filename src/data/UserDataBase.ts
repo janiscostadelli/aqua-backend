@@ -4,7 +4,6 @@ import connection from "./connection";
 
 class UserDatabase {
   tableName: string;
-
   constructor(tableName: string = "users") {
     this.tableName = tableName;
   }
@@ -19,8 +18,13 @@ class UserDatabase {
       );
     `);
   };
+
+  getUserByEmail = async (email: string) => {
+    const [result] = await connection.raw(`
+      SELECT * FROM ${this.tableName} WHERE email='${email}'
+    `);
+    return result[0];
+  };
 }
 
 export default new UserDatabase();
-// signup:
-//connection✓ => models✓ => data => business => controller
