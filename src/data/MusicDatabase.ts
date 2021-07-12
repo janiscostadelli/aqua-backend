@@ -4,7 +4,7 @@ import connection from "./connection";
 
 class MusicDatabase {
   tableName: string;
-  constructor(tableName: string = "musics") {
+  constructor(tableName: string = "devdatabase.musics") {
     this.tableName = tableName;
   }
 
