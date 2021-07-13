@@ -19,7 +19,7 @@ class UserBusiness {
       );
     }
     await UserDatabase.createUser(user);
-    return Authenticator.generateToken({ email: user.email });
+    return Authenticator.generateToken({ nickname: user.nickname });
   };
 
   login = async (user: loginDTO) => {
@@ -33,10 +33,8 @@ class UserBusiness {
     if (!HashManager.compare(user.password, result.password)) {
       throw new InvalidInputError("Senha incorreta");
     }
-    return Authenticator.generateToken({ email: user.email });
+    return Authenticator.generateToken({ nickname: result.nickname });
   };
 }
 
 export default new UserBusiness();
-
-// voce é incrivel

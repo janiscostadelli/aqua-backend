@@ -11,7 +11,7 @@ class Authenticator {
   ): string {
     const token = jwt.sign(
       {
-        nickname: input.email,
+        nickname: input.nickname,
       },
       process.env.JWT_KEY as string,
       {
@@ -24,14 +24,14 @@ class Authenticator {
   public getData(token: string): AuthenticationData {
     const payload = jwt.verify(token, process.env.JWT_KEY as string) as any;
     const result = {
-      email: payload.email,
+      nickname: payload.nickname,
     };
     return result;
   }
 }
 
 type AuthenticationData = {
-  email: string;
+  nickname: string;
 }
 
 export default new Authenticator();
