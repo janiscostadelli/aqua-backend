@@ -1,21 +1,25 @@
 import HashManager from "../middlewares/HashManager";
-import { signupDTO } from "../models/userModel";
+import IdGenerator from "../middlewares/IdGenerator";
+import { signupDTO } from "../models/userModels";
 import connection from "./connection";
 
 class UserDatabase {
   tableName: string;
-  constructor(tableName: string = "devdatabase.users") {
+  constructor(tableName: string = "devdatabase.user") {
     this.tableName = tableName;
   }
 
   createUser = async (user: signupDTO) => {
     await connection.raw(`
-      INSERT INTO ${this.tableName} (name, email, nickname, password) VALUES (
-      '${user.name}',
-      '${user.email}',
-      '${user.nickname}',
-      '${HashManager.hash(user.password)}'
-      );
+      INSERT INTO ${
+        this.tableName
+      } (id, name, email, nickname, password) VALUES (
+        '${IdGenerator.generate()}',
+        '${user.name}',
+        '${user.email}',
+        '${user.nickname}',
+        '${HashManager.hash(user.password)}'
+        );
     `);
   };
 

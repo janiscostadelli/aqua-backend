@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import UserBusiness from "../business/UserBusiness";
-import { loginDTO, signupDTO } from "../models/userModel";
+import { loginDTO, signupDTO } from "../models/userModels";
 
 class UserController {
   signup = async (req: Request, res: Response) => {

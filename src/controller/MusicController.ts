@@ -2,17 +2,21 @@ import { Request, Response } from "express";
 import MusicBusiness from "../business/MusicBusiness";
 import MusicDatabase from "../data/MusicDatabase";
 import { createMusicDTO } from "../models/musicModels";
+import Authenticator from "../middlewares/Authenticator";
 
 class MusicController {
   createMusic = async (req: Request, res: Response) => {
     try {
+      const nickname = Authenticator.getData(
+        req.headers.authorization!
+      ).nickname;
       const music: createMusicDTO = {
-        title: req.body.title,
-        author: req.body.author, 
-        date: req.body.date,
-        file: req.body.file,
+        name: req.body.name,
+        artist: req.body.artist,
+        playlist_id: req.body.playlist_id,
+        user_nickname: nickname,
+        url: req.body.url,
         genre: req.body.genre,
-        album: req.body.album,
       };
 
       const message = await MusicBusiness.createMusic(music);
@@ -22,7 +26,7 @@ class MusicController {
     }
   };
 
-  getAllMusics = async (req: Request ,res: Response) => {
+  getAllMusics = async (req: Request, res: Response) => {
     try {
       const result = await MusicDatabase.getAllMusics();
       res.status(200).send(result);

@@ -3,7 +3,7 @@ import { InvalidInputError } from "../error/InvalidInputError";
 import { NotFoundError } from "../error/NotFoundError";
 import Authenticator from "../middlewares/Authenticator";
 import HashManager from "../middlewares/HashManager";
-import { loginDTO, signupDTO } from "../models/userModel";
+import { loginDTO, signupDTO } from "../models/userModels";
 
 class UserBusiness {
   signup = async (user: signupDTO) => {

@@ -99,5 +99,8 @@ FROM
   music
 WHERE
   playlist_id = "621858c4-e496-4335-81ff-8ca83aaf127e"
-  OR name LIKE '%NijiGaku%'
-  OR artist LIKE '%NijiGaku%';
+  AND (name LIKE '%NijiGaku%'
+  OR artist LIKE '%NijiGaku%');
+
+ALTER TABLE playlist
+ADD UNIQUE (name);

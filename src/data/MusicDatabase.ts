@@ -9,15 +9,20 @@ class MusicDatabase {
   }
 
   createMusic = async (music: createMusicDTO) => {
+    const today = new Date(Date.now());
+
     await connection.raw(`
-      INSERT INTO ${this.tableName} (id, title, author, date, file, genre, album) VALUES (
+      INSERT INTO ${
+        this.tableName
+      } (id, name, artist, playlist_id, user_nickname, date, url, genre) VALUES (
         "${IdGenerator.generate()}",
-        "${music.title}",
-        "${music.author}",
-        "${music.date}",
-        "${music.file}",
+        "${music.name}",
+        "${music.artist}",
+        "${music.playlist_id}",
+        "${music.user_nickname}",
+        "${today.toDateString()}",
+        "${music.url}",
         "${music.genre}",
-        "${music.album}"
       );`);
   };
 
@@ -30,11 +35,3 @@ class MusicDatabase {
 }
 
 export default new MusicDatabase();
-
-/*
-  title: string,
-  author: string,
-  date: Date,
-  file: string,
-  genre: string[],
-  album: string */
