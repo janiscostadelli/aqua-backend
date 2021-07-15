@@ -1,5 +1,5 @@
 import IdGenerator from "../middlewares/IdGenerator";
-import { createMusicDTO } from "../models/musicModels";
+import { createMusicDTO, searchMusicDTO } from "../models/musicModels";
 import connection from "./connection";
 
 class MusicDatabase {
@@ -9,7 +9,6 @@ class MusicDatabase {
   }
 
   createMusic = async (music: createMusicDTO) => {
-
     await connection.raw(`
       INSERT INTO ${
         this.tableName
@@ -29,6 +28,15 @@ class MusicDatabase {
     const [result] = await connection.raw(`
       SELECT * FROM ${this.tableName};
     `);
+    return result;
+  };
+
+  searchMusic = async (searchMusic: searchMusicDTO) => {
+    const [result] = await connection.raw(`
+    SELECT * FROM ${this.tableName} WHERE 
+      playlist_id = "${searchMusic.playlist_id}" 
+      AND (name LIKE '%${searchMusic.input_text}%' 
+      OR artist LIKE '%${searchMusic.input_text}%')`);
     return result;
   };
 }

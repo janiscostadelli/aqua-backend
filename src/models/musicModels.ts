@@ -28,3 +28,8 @@ export type createMusicDTO = {
   url: string;
   genre: GENRE;
 };
+
+export type searchMusicDTO = {
+  playlist_id: string;
+  input_text: string;
+};
