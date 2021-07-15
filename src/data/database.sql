@@ -104,3 +104,6 @@ WHERE
 
 ALTER TABLE playlist
 ADD UNIQUE (name);
+
+ALTER TABLE music
+ADD UNIQUE (name);

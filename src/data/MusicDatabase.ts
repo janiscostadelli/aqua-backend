@@ -4,12 +4,11 @@ import connection from "./connection";
 
 class MusicDatabase {
   tableName: string;
-  constructor(tableName: string = "devdatabase.musics") {
+  constructor(tableName: string = "devdatabase.music") {
     this.tableName = tableName;
   }
 
   createMusic = async (music: createMusicDTO) => {
-    const today = new Date(Date.now());
 
     await connection.raw(`
       INSERT INTO ${
@@ -20,9 +19,9 @@ class MusicDatabase {
         "${music.artist}",
         "${music.playlist_id}",
         "${music.user_nickname}",
-        "${today.toDateString()}",
+        NOW(),
         "${music.url}",
-        "${music.genre}",
+        "${music.genre}"
       );`);
   };
 

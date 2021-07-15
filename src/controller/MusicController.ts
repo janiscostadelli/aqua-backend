@@ -22,6 +22,14 @@ class MusicController {
       const message = await MusicBusiness.createMusic(music);
       res.status(200).send({ message });
     } catch (error) {
+      if(error.sqlMessage){
+        if(error.sqlMessage.includes("playlist")){
+          res.status(400).send({error: 'Playlist não encontrada'})
+        }
+        if(error.sqlMessage.includes("Duplicate entry")){
+          res.status(400).send({error: 'Essa música já foi adicionada'})
+        }
+      }
       res.status(400).send({ error: error.message });
     }
   };
