@@ -1,4 +1,4 @@
-# Aqua
+#  🎧 Aqua
 http://aqua-api-doc.surge.sh/
 
 Projeto Full Stack de um site de musicas.
