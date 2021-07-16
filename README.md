@@ -10,6 +10,7 @@ Projeto Full Stack de um site de musicas.
 Node.js
 ```
 
+
 #### 🔧 Instalação
 
 ```
@@ -18,6 +19,20 @@ npm install
 
 ```
 npm start
+```
+
+#### 📄 Scripts
+```
+npm start
+```
+```
+npm run dev
+```
+```
+npm run build
+```
+```
+npm run deploy
 ```
 
 #### 📦 API
