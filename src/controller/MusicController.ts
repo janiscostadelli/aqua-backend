@@ -46,7 +46,7 @@ class MusicController {
   searchMusic = async (req: Request, res: Response) => {
     try {
       const body: searchMusicDTO = {
-        playlist_id: req.params.playlistId,
+        playlist_id: req.body.playlistId,
         input_text: req.body.inputText || '',
       };
       const result = await MusicDatabase.searchMusic(body);
