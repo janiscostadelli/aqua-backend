@@ -15,6 +15,10 @@ class MusicBusiness {
       );
     }
 
+    if (!music.url.includes("https://open.spotify.com/track/")) {
+      throw new InvalidInputError("Coloque um link válido do Spotify");
+    }
+
     if (
       music.genre != GENRE.POP &&
       music.genre != GENRE.FUNK &&
@@ -26,7 +30,7 @@ class MusicBusiness {
       music.genre != GENRE.NENHUM
     ) {
       throw new InvalidInputError(
-        "O campo 'genre' deve ser uma das opções: 'funk', 'sertanejo', 'pop', 'eletronica', 'forró, 'j-music', 'rock', 'nenhum'"
+        "O campo 'genre' deve ser uma das opções: 'funk', 'sertanejo', 'pop', 'eletrônica', 'forró, 'j-music', 'rock', 'nenhum'"
       );
     }
     await MusicDatabase.createMusic(music);
