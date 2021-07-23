@@ -11,7 +11,7 @@ class MusicBusiness {
       !music.url
     ) {
       throw new InvalidInputError(
-        "Preencha os campos 'name', 'artist', 'playlist_id', 'genre' e 'url'"
+        "Preencha os campos 'name', 'artist', 'playlistId', 'genre' e 'url'"
       );
     }
 
